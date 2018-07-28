@@ -1,5 +1,5 @@
 {
-  "name": "ethereum-boilerplate",
+  "name": "solidity-lottery",
   "version": "1.0.0",
   "description": "Boilerplate for DApp development",
   "main": "index.js",

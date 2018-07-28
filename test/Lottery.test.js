@@ -7,38 +7,23 @@ const web3 = new Web3(provider);
 
 const { interface, bytecode } = require('../compile');
 
+let lottery;
 let accounts;
-let inbox; 
-const INITIAL_STRING = 'Hi there!';
 
 beforeEach(async () => {
-  // Get a list of all accounts
   accounts = await web3.eth.getAccounts();
 
-  // Use one of those accounts to deploy contract
+  lottery = await new web3.eth.Contract(JSON.parse(interface))
+    .deploy({ data: bytecode})
+    .send({ from: accounts[0], gas: '2000000' });
 
-  // JSON.parse(interface) = JS object that represents the ABI
-  inbox = await new web3.eth.Contract(JSON.parse(interface))
-    .deploy({ data: bytecode, arguments: [INITIAL_STRING] })
-    .send({ from: accounts[0], gas: '1000000' });
-
-  inbox.setProvider(provider);
+  lottery.setProvider(provider);
 });
 
-describe('Inbox', () => {
-  it('Deploys a contract', () => {
-    // Fails if argument is null or undefined
-    assert.ok(inbox.options.address);
+describe('Lottery Contract', () => {
+  it('Deploys contract', () => {
+    assert.ok(lottery.options.address);
   });
 
-  it('Initializes message with constructor argument', async () => {
-    const message = await inbox.methods.message().call();
-    assert.equal(message, INITIAL_STRING);
-  });
-
-  it('Sets a new message with the setMessage() method', async () => {
-    await inbox.methods.setMessage('testing').send({ from: accounts[0] });
-    const message = await inbox.methods.message().call();
-    assert.equal(message, 'testing');
-  });
+  
 });

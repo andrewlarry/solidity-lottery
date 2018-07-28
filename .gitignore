@@ -5,6 +5,14 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Config and wallets
+config/
+wallets/
+
+.DS_Store
+package-lock.json
+
+
 # Runtime data
 pids
 *.pid

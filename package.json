@@ -4,7 +4,8 @@
   "description": "Boilerplate for DApp development",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "deploy": "node deploy.js"
   },
   "repository": {
     "type": "git",

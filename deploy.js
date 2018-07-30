@@ -21,9 +21,7 @@ const deploy = async () => {
     .catch(err => console.log(err));
 
   console.log('address: ', result.options.address);
+  console.log('interface: ', interface);
 };
-
-
-// Address: 0xD78Aa3a3CAe685e76Df31A034DE921ED1dF96192
 
 deploy();
